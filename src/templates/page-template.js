@@ -30,10 +30,10 @@ export default function PageTemplate({ pageContext: { item } }) {
           <h2 className="text-crimson">{title}</h2>
           <PaginationDefault pagination={paginationLinks} />
           <div className="grid-1 grid-md-12 mt-2 gap-1 gap-md-2">
-            <div className="col-md-4 order-2 order-md-1">
+            <div className="col-md-4">
               <SidebarDefault sidebarLinks={sidebar} />
             </div>
-            <div className="col-md-8 order-1 order-md-2">
+            <div className="col-md-8">
               <ContentsPageTemplate item={item} />
             </div>
           </div>

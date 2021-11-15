@@ -106,6 +106,13 @@ $utilities: (
       "5": 5rem,
     ),
   ),
+  "max-width": (
+    "prefix": "mw",
+    "values": (
+      "auto": auto,
+      "25": 25rem,
+    ),
+  ),
 );
 
 @each $property, $map in $utilities {

@@ -1,8 +1,9 @@
-import React, { useEffect, useRef } from 'react'
+import React, { useEffect, useRef, useState } from 'react'
 import { motion, AnimatePresence } from 'framer-motion'
-import { modalData } from '../../assets/data/modal'
 import { modalVariants } from '../../assets/animations/animations'
 import { backdropVariants } from '../../assets/animations/animations'
+
+
 
 const useDisableBodyScroll = (open) => {
   useEffect(() => {
@@ -16,7 +17,6 @@ const useDisableBodyScroll = (open) => {
 
 let useClickOutside = (handler) => {
   let domNode = useRef()
-  console.log(domNode)
   useEffect(() => {
     let mouseDownHandler = (event) => {
       if (!domNode?.current?.contains(event.target)) {
@@ -31,7 +31,8 @@ let useClickOutside = (handler) => {
   return domNode
 }
 
-const Modal = ({ showModal, setShowModal }) => {
+const Modal = ({ modalData, trigger }) => {
+  const [showModal, setShowModal] = useState(false);
   //disable the scroll when modal is open
   useDisableBodyScroll(showModal)
 
@@ -52,6 +53,13 @@ const Modal = ({ showModal, setShowModal }) => {
   })
   return (
     <>
+      <button
+        className="btn btn-blue"
+        onClick={() => setShowModal(true)}
+        tabIndex={0}
+      >
+        {trigger}
+      </button>
       <AnimatePresence exitBeforeEnter>
         {showModal && (
           <motion.div
@@ -61,10 +69,10 @@ const Modal = ({ showModal, setShowModal }) => {
             animate="visible"
             exit="hidden"
           >
-            <motion.div className="modal" variants={modalVariants}>
+            <motion.div className="modal" variants={modalVariants} aria-modal="true" role="dialog">
               <div className="modal__content" ref={domNode}>
                 <div className="modal__header">
-                  <h5 className="modal__title">{modalData.title}</h5>
+                  <h3 className="modal__title">{modalData.title}</h3>
                   <button
                     className="modal__close"
                     data-dismiss="modal"
@@ -82,7 +90,7 @@ const Modal = ({ showModal, setShowModal }) => {
                 <div className="modal__footer">
                   <button
                     type="button"
-                    className="btn btn-crimson modal__butn"
+                    className="btn btn-crimson"
                     aria-label="Close"
                     onClick={() => setShowModal(false)}
                   >

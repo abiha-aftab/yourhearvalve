@@ -5,6 +5,7 @@
   transition: $transition-default;
   border:none;
   font-size: $font-size-base;
+  font-weight: $font-weight-bold;
   cursor: pointer;
   @each $key, $val in $colors {
     &-#{$key} {

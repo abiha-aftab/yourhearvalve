@@ -18,9 +18,15 @@ const FooterDefault = ({ footerLinks = null}) => {
                     const { name, url } = link
                     return (
                       <li className="footerDefault__list-item" key={index}>
-                        <Link to={url} className="footerDefault__list-link">
-                          {name}
-                        </Link>
+                        {url.indexOf('https') !== -1 ? (
+                          <a href={url} target="_blank" rel="noreferrer" className="footerDefault__list-link">
+                            {name}
+                          </a>
+                        ) : (
+                          <Link to={url} className="footerDefault__list-link">
+                            {name}
+                          </Link>
+                        )}
                       </li>
                     )
                   })}

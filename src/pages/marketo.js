@@ -1,7 +1,6 @@
 import React from 'react'
 import SidebarDefault from '../components/Sidebar/variants/SidebarDefault'
 import { sidebarLinks } from '../assets/data/links'
-import ContentsPageTemplate from '../containers/Contents/variants/ContentsPageTemplate'
 import HeroSmall from '../containers/Hero/variants/HeroSmall'
 import pageBanner from '../assets/images/page-banner.jpeg'
 import FormBasic from '../components/Form/variants/FormBasic'

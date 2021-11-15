@@ -5,10 +5,10 @@
     }
     &--active {
       .accordionBasic__button {
-        background:$color-sky;
+        background:$color-blue;
         color:$color-white;
         &:hover {
-          background:$color-sky-2
+          background:darken($color-blue,$btn-hover-amount);
         }
       }
     }

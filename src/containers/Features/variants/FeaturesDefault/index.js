@@ -4,7 +4,7 @@ import CardBasic from '../../../../components/Card/variants/CardBasic'
 
 const FeaturesDefault = () => {
   return (
-    <div className="section">
+    <section className="section">
       <div className="container-sm">
         <p className="text-center lead">
           A patient information resource from Edwards Lifesciences, the leader
@@ -16,7 +16,7 @@ const FeaturesDefault = () => {
           })}
         </div>
       </div>
-    </div>
+    </section>
   )
 }
 

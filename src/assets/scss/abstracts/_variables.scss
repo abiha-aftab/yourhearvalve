@@ -6,7 +6,7 @@ $font-size-base: 1rem;
 $font-size-h1: $font-size-base * 3;
 $font-size-h2: $font-size-base * 2;
 $font-size-h3: $font-size-base * 1.75;
-$font-size-h4: $font-size-base;
+$font-size-h4: $font-size-base * 1.25;
 $font-size-lead: $font-size-base * 1.25;
 $font-size-small: $font-size-base * 0.875;
 
@@ -27,19 +27,19 @@ $color-slate-2: #edeeee;
 $color-slate-3: #b8b8b9;
 $color-black: #000000;
 $color-white: #ffffff;
-$color-sky: #8ba9bd;
-$color-sky-1: #7b9db4;
-$color-sky-2: #9bb5c6;
+$color-blue: #356584;
 $color-grey: #edeeee;
 $color-grey-2: #b8b8b9;
 $color-grey-3: #e0e2e2;
+$color-focus: #0099FF;
 
 $colors: (
-  'crimson': $color-crimson,
-  'slate': $color-slate,
-  'slate-2': $color-slate-2,
-  'sky': $color-sky,
-  'white': $color-white,
+  "crimson": $color-crimson,
+  "slate": $color-slate,
+  "slate-2": $color-slate-2,
+  "blue": $color-blue,
+  "white": $color-white,
+  "black": $color-black
 );
 
 /* === Breakpoints === */
@@ -47,7 +47,6 @@ $colors: (
 $breakpoints: (
   'md': 768px,
   'lg': 1024px,
-  'sm': 260px,
 );
 
 /* === Layout === */

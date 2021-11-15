@@ -1,33 +1,31 @@
-import React from 'react'
-import { Link } from 'gatsby'
+import React, { useState, useEffect } from 'react'
+import { AnimatePresence } from 'framer-motion'
+
+import Dropdown from './Dropdown'
+import List from './List'
 
 const SidebarDefault = ({ sidebarLinks = null }) => {
+  const [isOpen, setIsOpen] = useState(true)
+  useEffect(() => {
+    const handleResize = () => {
+      if (window.innerWidth >= 768) {
+        setIsOpen(true)
+      } else {
+        setIsOpen(false)
+      }
+    }
+    window.addEventListener('resize', handleResize)
+    return () => {
+      window.removeEventListener('resize', null)
+    }
+  })
   if (!sidebarLinks) return
   return (
     <aside className="sidebarDefault">
-      <ul className="sidebarDefault__list">
-        {sidebarLinks.map((link, index) => {
-          return (
-            <>
-              {link.url === '/' ? (
-                <li className="sidebarDefault__item sidebarDefault__item--headline" key={index}>
-                    {link.name}
-                </li>
-              ) : (
-                <li className="sidebarDefault__item" key={index}>
-                  <Link
-                    activeClassName="sidebarDefault__link--active"
-                    className="sidebarDefault__link"
-                    to={link.url}
-                  >
-                    {link.name}
-                  </Link>
-                </li>
-              )}
-            </>
-          )
-        })}
-      </ul>
+      <Dropdown isOpen={isOpen} setIsOpen={setIsOpen} />
+      <AnimatePresence>
+        {isOpen && <List sidebarLinks={sidebarLinks} />}
+      </AnimatePresence>
     </aside>
   )
 }

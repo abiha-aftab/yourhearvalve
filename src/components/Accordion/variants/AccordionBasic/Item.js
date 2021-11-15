@@ -25,8 +25,8 @@ const AccordionItem = ({ item, index, isActive, setIsActive }) => {
   }
 
   return (
-    <div className={isActive === index ? "accordionBasic__item accordionBasic__item--active" : "accordionBasic__item"}>
-      <button className="accordionBasic__button" onClick={() => toggleActiveTab(index)}>{title}</button>
+    <div className={isActive === index ? "accordionBasic__item accordionBasic__item--active" : "accordionBasic__item"} >
+      <button className="accordionBasic__button" onClick={() => toggleActiveTab(index)} aria-expanded={isActive === index ? "true" : "false"}>{title}</button>
       <AnimatePresence initial={false}>{isActive === index && <motion.div key={index} variants={accordionVariant} initial="collapsed" animate="open" exit="collapsed" transition={{ duration: .5 }} className="accordionBasic__body">
         <div className="accordionBasic__content">{body}</div>
       </motion.div>}</AnimatePresence>

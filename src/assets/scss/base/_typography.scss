@@ -43,11 +43,19 @@ p {
   color: $color-slate;
 }
 
-ul.list {
+.list {
   font-size: $font-size-base;
   line-height: $line-height-list;
   margin-bottom: $spacer;
   color: $color-slate;
+  &__item {
+    &:not(:last-child) {
+      margin-bottom: 0.5rem;
+    }
+  }
+  &--unstyled {
+    list-style: none;
+  }
 }
 
 .small {
@@ -63,10 +71,23 @@ ul.list {
   color: $color-slate;
 }
 
+a {
+  color: $color-crimson;
+  @include focus;
+}
+
 hr {
   margin: 2rem 0;
   border-color: $color-slate-3;
   @include md {
     margin: 3rem 0;
   }
+}
+
+button {
+  border: none;
+  font-size: $font-size-base;
+  line-height: line-height($font-size-base);
+  cursor: pointer;
+  @include focus;
 }

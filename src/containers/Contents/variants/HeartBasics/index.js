@@ -2,7 +2,7 @@ import React from 'react'
 
 const HeartBasicContent = ({ item }) => {
   return (
-    <div>
+    <section>
       <h3>{item.name}</h3>
 
       <p>
@@ -18,7 +18,7 @@ const HeartBasicContent = ({ item }) => {
         by a heart specialist are essential. Always consult your doctor when you
         have questions or concerns about your health.
       </p>
-    </div>
+    </section>
   )
 }
 

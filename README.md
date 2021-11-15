@@ -210,7 +210,7 @@ const CardBasic = ({ data }) => {
       <h3 className="cardBasic__title">{title}</h3>
       <div className="cardBasic__icon">{icon}</div>
       <p className="cardBasic__description">{description}</p>
-      <a href={cta_link} className="btn btn-sky cardBasic__cta">
+      <a href={cta_link} className="btn btn-blue cardBasic__cta">
         {cta_text}
       </a>
     </article>
@@ -298,9 +298,7 @@ h2 {
 | ![#edeeee](https://via.placeholder.com/10/edeeee?text=+) $color-slate-2 | #EDEEEE |
 | ![#000000](https://via.placeholder.com/10/000000?text=+) $color-black   | #000000 |
 | ![#FFFFFF](https://via.placeholder.com/10/FFFFFF?text=+) $color-white   | #FFFFFF |
-| ![#8ba9bd](https://via.placeholder.com/10/8ba9bd?text=+) $color-sky     | #8ba9bd |
-| ![#7b9db4](https://via.placeholder.com/10/7b9db4?text=+) $color-sky-1   | #7b9db4 |
-| ![#9bb5c6](https://via.placeholder.com/10/9bb5c6?text=+) $color-sky-2   | #9bb5c6 |
+| ![#8ba9bd](https://via.placeholder.com/10/8ba9bd?text=+) $color-blue     | #356584 |
 
 ## Breakpoints
 

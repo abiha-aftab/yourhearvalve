@@ -1,26 +1,10 @@
-import React, { useState } from 'react'
+import React from 'react'
 import AccordionBasic from '../../../../components/Accordion/variants/AccordionBasic'
 import { accordionData } from '../../../../assets/data/accordion'
 import Modal from '../../../../components/Modal'
+import { modalData } from '../../../../assets/data/modal'
 
 const ContentsPageTemplate = ({ item }) => {
-  const [showModal, setShowModal] = useState(false)
-
-  let modalPopup = (
-    <>
-      <button
-        className="btn btn-sky btn-border butn-info"
-        onClick={() => setShowModal(true)}
-        tabIndex={0}
-      >
-        <strong>
-          This information is not a substitute for talking with your doctor.
-        </strong>
-      </button>
-
-      <Modal showModal={showModal} setShowModal={setShowModal} />
-    </>
-  )
 
   return (
     <>
@@ -28,7 +12,7 @@ const ContentsPageTemplate = ({ item }) => {
       {item.url.indexOf('/faqs/') !== -1 ? (
         <>
           <AccordionBasic data={accordionData} />
-          {modalPopup}
+          <Modal modalData={modalData} trigger="This information is not a substitute for talking with your doctor."/>
         </>
       ) : (
         <>
@@ -47,7 +31,7 @@ const ContentsPageTemplate = ({ item }) => {
             </p>
             {item.url.indexOf('/heart-basics/') !== -1 ||
             item.url.indexOf('/treatment-options/') !== -1 ? (
-              <>{modalPopup}</>
+                  <Modal modalData={modalData} trigger="This information is not a substitute for talking with your doctor."/>
             ) : (
               ''
             )}

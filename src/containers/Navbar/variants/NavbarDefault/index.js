@@ -11,7 +11,7 @@ const NavbarDefault = ({ navLinks = null }) => {
     setMobile(!mobile)
   }
   return (
-    <nav className="navbarDefault">
+    <nav className="navbarDefault" role="navigation">
       <div className="navbarDefault__container">
         <div className="navbarDefault__top">
           <Link to="/">
@@ -21,7 +21,7 @@ const NavbarDefault = ({ navLinks = null }) => {
               alt="YourHeartvalve logo"
             />
           </Link>
-          <button className="navbarDefault__toggle" onClick={toggleMobile}>
+          <button className="navbarDefault__toggle" onClick={toggleMobile} aria-expanded={mobile ? "true" : "false"}>
             <FiMenu />
           </button>
         </div>

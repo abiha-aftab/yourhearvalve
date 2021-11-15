@@ -10,11 +10,13 @@ const HeroSmall = ({ data }) => {
 
   // return <GatsbyImage className="heroSmall" image={image} />
   return (
-    <StaticImage
-      className="heroSmall"
-      src="../../../../assets/images/page-banner.jpeg"
-      alt="hero image"
-    />
+    <section>
+      <StaticImage
+        className="heroSmall"
+        src="../../../../assets/images/page-banner.jpeg"
+        alt="hero image"
+      />
+    </section>
   )
 }
 

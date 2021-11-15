@@ -22,17 +22,17 @@ const Dropdown = ({
 
   return (
     <li className="navbarDefault__nav-item">
-      <a
-        href={url}
+      <button
         className={
           activeDropdown === id || (isBrowser() && window.location.pathname.indexOf(url) !== -1)
             ? 'navbarDefault__nav-link navbarDefault__nav-link--active'
             : 'navbarDefault__nav-link'
         }
         onClick={(e) => toggleDropdown(e, id)}
+        aria-expanded={activeDropdown === id ? "true":"false"}
       >
         {name} {activeDropdown === id ? <FaCaretUp /> : <FaCaretDown />}
-      </a>
+      </button>
       <AnimatePresence>
         {activeDropdown === id && (
           <motion.ul
@@ -42,6 +42,7 @@ const Dropdown = ({
             animate="end"
             exit="exit"
             className="navbarDefault__dropdown"
+            aria-label={name}
           >
             {links.map((link, index) => {
               const { name, url } = link

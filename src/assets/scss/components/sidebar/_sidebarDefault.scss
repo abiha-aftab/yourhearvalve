@@ -9,8 +9,24 @@
 .sidebarDefault {
   display: flex;
   flex-direction: column;
+  position: relative;
+  &__toggle {
+    align-self: flex-start;
+    @include md {
+      display: none;
+    }
+  }
   &__list {
     list-style: none;
+    position: absolute;
+    background: $color-white;
+    top: 3.5rem;
+    border: 1px solid $color-grey-3;
+    @include md {
+      position: relative;
+      top: 0;
+      border: none;
+    }
   }
   &__item:not(:last-child) .sidebarDefault__link {
     border-bottom: 1px solid $color-slate-1;
@@ -26,7 +42,7 @@
     &:hover {
       text-decoration: underline;
     }
-    &--active{
+    &--active {
       font-weight: bold;
     }
   }

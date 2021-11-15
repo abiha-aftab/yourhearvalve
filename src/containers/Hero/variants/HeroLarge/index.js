@@ -47,11 +47,9 @@ const HeroLarge = ({ data }) => {
     >
       <div
         className="heroLarge__container"
-        data-kontent-element-codename="page_home_page_banner"
       >
         <div
           className="heroLarge__content"
-          data-kontent-element-codename="page_home_page_banner"
         >
           <h1
             className="heroLarge__title"

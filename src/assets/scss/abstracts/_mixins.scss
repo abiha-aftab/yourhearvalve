@@ -1,0 +1,29 @@
+@use 'sass:math';
+
+/* === Breakpoints === */
+
+@mixin md {
+  @media (min-width: map-get($breakpoints, 'md')) {
+    @content;
+  }
+}
+
+@mixin lg {
+  @media (min-width: map-get($breakpoints, 'lg')) {
+    @content;
+  }
+}
+
+@mixin sm {
+  @media (min-width: map-get($breakpoints, 'sm')) {
+    @content;
+  }
+}
+/* === Layout === */
+
+@mixin container {
+  max-width: $max-width-container;
+  margin: 0 auto;
+  width: 100%;
+  padding: 0 $spacer;
+}

@@ -1,0 +1,20 @@
+.btn {
+  padding: 1rem;
+  text-decoration: none;
+  display: inline-block;
+  transition: $transition-default;
+  border:none;
+  font-size: $font-size-base;
+  cursor: pointer;
+  @each $key, $val in $colors {
+    &-#{$key} {
+      background: #{$val};
+      color: contrast($val);
+      text-decoration: none;
+      display: inline-block;
+      &:hover {
+        background: darken($val, $btn-hover-amount);
+      }
+    }
+  }
+}

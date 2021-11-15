@@ -1,0 +1,28 @@
+.footerDefault {
+  &__title-link {
+    text-decoration: none;
+    &:hover {
+      text-decoration: underline;
+      text-decoration-color: $color-white;
+    }
+  }
+  &__title {
+    color: $color-white;
+  }
+  &__list {
+    list-style: none;
+    line-height: $line-height-list;
+  }
+  &__list-item {
+    &:not(:last-child) {
+      margin-bottom: 1rem;
+    }
+  }
+  &__list-link {
+    color: $color-slate-3;
+    text-decoration: none;
+    &:hover {
+      text-decoration: underline;
+    }
+  }
+}

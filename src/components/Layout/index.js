@@ -97,8 +97,8 @@ const Layout = ({ children }) => {
   return (
     <div
       className="layout"
-      data-kontent-project-id={process.env.KONTENT_PROJECT_ID}
-      data-kontent-language-codename={process.env.KONTENT_LANGUAGE_CODENAMES}
+      data-kontent-project-id="ef0fe65a-50fe-0038-cf87-565345f32cff"
+      data-kontent-language-codename="default"
     >
       <NavbarDefault navLinks={navLinks} />
       {children}

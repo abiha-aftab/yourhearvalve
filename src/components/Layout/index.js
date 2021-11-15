@@ -96,6 +96,7 @@ const Layout = ({ children }) => {
   )
   return (
     <div
+      className="layout"
       data-kontent-project-id={process.env.KONTENT_PROJECT_ID}
       data-kontent-language-codename={process.env.KONTENT_LANGUAGE_CODENAMES}
     >

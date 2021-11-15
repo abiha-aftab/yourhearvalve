@@ -8,7 +8,6 @@ module.exports = {
         languageCodenames: process.env.KONTENT_LANGUAGE_CODENAMES.split(
           ','
         ).map((lang) => lang.trim()),
-        usePreviewUrl: true,
       },
     },
     `gatsby-plugin-sass`,

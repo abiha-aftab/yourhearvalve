@@ -14,11 +14,7 @@ const FeaturesDefault = ({ data }) => {
         >
           {data.elements.page_home_patient_information_description.value}
         </p>
-        <div className="grid-md-2 gap-1 gap-md-2"
-          data-kontent-element-codename={codename}
-          data-kontent-add-button
-          data-kontent-add-button-insert-position="end"
-          data-kontent-add-button-render-position="right-end">
+        <div className="grid-md-2 gap-1 gap-md-2">
           {patientInformationCards.map((card, index) => {
             return <CardBasic data={card} key={index} />
           })}

@@ -1,7 +1,7 @@
 import React from 'react'
 import { StaticImage } from 'gatsby-plugin-image'
 
-import { useStaticQuery, graphql } from 'gatsby'
+import { useStaticQuery, graphql, Link } from 'gatsby'
 
 const HeroLarge = ({ data }) => {
   const content = useStaticQuery(graphql`
@@ -20,8 +20,15 @@ const HeroLarge = ({ data }) => {
           page_home_page_banner_anchors {
             value {
               ... on kontent_item_component_anchor {
+                system {
+                  codename
+                  id
+                }
                 elements {
                   component_anchor_name {
+                    value
+                  }
+                  component_anchor_url {
                     value
                   }
                 }
@@ -45,12 +52,8 @@ const HeroLarge = ({ data }) => {
       className="heroLarge"
       data-kontent-item-id="fe54d41a-5018-40cf-b270-bb75d52376ef"
     >
-      <div
-        className="heroLarge__container"
-      >
-        <div
-          className="heroLarge__content"
-        >
+      <div className="heroLarge__container">
+        <div className="heroLarge__content">
           <h1
             className="heroLarge__title"
             data-kontent-element-codename="page_home_page_banner"
@@ -69,12 +72,23 @@ const HeroLarge = ({ data }) => {
                 .page_home_page_banner_description.value
             }
           </p>
-          <a href={cta_link_1} className="heroLarge__btn btn btn-blue">
-            {cta_text_1}
-          </a>
-          <a href={cta_link_2} className="heroLarge__btn btn btn-blue">
-            {cta_text_2}
-          </a>
+          {content.kontentItemPageHomePageBanner.elements.page_home_page_banner_anchors.value.map(
+            (anchor) => {
+              const { component_anchor_name, component_anchor_url } =
+                anchor.elements
+              const { codename, id } = anchor.system
+              return (
+                <p
+                  className="heroLarge__btn btn btn-blue"
+                  key={component_anchor_name.value}
+                  data-kontent-element-codename={codename}
+                  data-kontent-item-id={id}
+                >
+                  {component_anchor_name.value}
+                </p>
+              )
+            }
+          )}
         </div>
       </div>
       <StaticImage

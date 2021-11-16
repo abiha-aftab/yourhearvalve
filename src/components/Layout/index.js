@@ -4,6 +4,8 @@ import FooterDefault from '../../containers/Footer/variants/FooterDefault'
 import NavbarDefault from '../../containers/Navbar/variants/NavbarDefault'
 import { useStaticQuery, graphql } from 'gatsby'
 import { prepareDataLinks } from '../../utils/prepareDataLinks'
+import KontentSmartLink from "@kentico/kontent-smart-link";
+
 
 const Layout = ({ children }) => {
   const data = useStaticQuery(graphql`
@@ -74,6 +76,18 @@ const Layout = ({ children }) => {
       }
     }
   `)
+  
+   useEffect(() => {
+    // This is just an example of SDK initialization inside ES6 module.
+    // HTML markup should still contain all necessary data-attributes (e.g. .layout element).
+    const kontentSmartLink = KontentSmartLink.initialize({
+      queryParam: "enable-ksl-sdk"
+    });
+    return () => {
+      kontentSmartLink.destroy();
+    };
+  });
+  
   const navLinks = prepareDataLinks(
     data.kontentItemNavigationHeader.elements.navigation_header_linked_items
       .value

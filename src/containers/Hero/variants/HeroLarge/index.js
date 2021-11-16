@@ -46,6 +46,7 @@ const HeroLarge = ({ data }) => {
                   component_anchor_aria_label.value ||
                   component_anchor_name.value
                 }
+                key={id}
                 data-kontent-element-codename={codename}
                 data-kontent-item-id={id}
                 className="heroLarge__btn btn btn-blue"

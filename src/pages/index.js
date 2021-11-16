@@ -9,7 +9,6 @@ export default function Home({ data }) {
     data.kontentItemPageHome.elements.page_home_page_banner.value[0]
   const dataPatientInformation =
     data.kontentItemPageHome.elements.page_home_patient_information.value[0]
-      .elements
   const dataHeartAnatomy =
     data.kontentItemPageHome.elements.page_home_heart_anatomy.value[0].elements
 
@@ -85,6 +84,10 @@ export const pageQuery = graphql`
         page_home_patient_information {
           value {
             ... on kontent_item_page_home_patient_information {
+              system {
+                codename
+                id
+              }
               elements {
                 page_home_patient_information_description {
                   value
@@ -92,6 +95,10 @@ export const pageQuery = graphql`
                 page_home_patient_information_cards {
                   value {
                     ... on kontent_item_component_card {
+                      system {
+                        codename
+                        id
+                      }
                       elements {
                         component_card_name {
                           value

@@ -49,6 +49,9 @@ const HeroLarge = ({ data }) => {
                 key={id}
                 data-kontent-element-codename={codename}
                 data-kontent-item-id={id}
+data-kontent-add-button
+             data-kontent-add-button-insert-position="end"
+             data-kontent-add-button-render-position="right-end"
                 className="heroLarge__btn btn btn-blue"
               >
                 {component_anchor_name.value}

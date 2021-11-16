@@ -4,7 +4,17 @@ import FooterDefault from '../../containers/Footer/variants/FooterDefault'
 import NavbarDefault from '../../containers/Navbar/variants/NavbarDefault'
 import { useStaticQuery, graphql } from 'gatsby'
 import { prepareDataLinks } from '../../utils/prepareDataLinks'
-import KontentSmartLink from '@kentico/kontent-smart-link'
+import KontentSmartLink, { KontentSmartLinkEvent } from '@kentico/kontent-smart-link';
+
+const sdk = KontentSmartLink.initialize({ ... });
+sdk.on(
+  KontentSmartLinkEvent.Refresh,
+  (data, metadata, originalRefresh) => {
+    // Custom refresh logic goes here
+    // ...
+    originalRefresh(); // If you want to refresh the page at the end
+  }
+); 
 
 const Layout = ({ children }) => {
   const data = useStaticQuery(graphql`

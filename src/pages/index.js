@@ -10,9 +10,8 @@ export default function Home({ data }) {
   const dataPatientInformation =
     data.kontentItemPageHome.elements.page_home_patient_information.value[0]
   const dataHeartAnatomy =
-    data.kontentItemPageHome.elements.page_home_heart_anatomy.value[0].elements
+    data.kontentItemPageHome.elements.page_home_heart_anatomy.value[0]
 
-  console.log('data', data)
   return (
     <>
       <HeroLarge data={dataPageBanner} />
@@ -137,6 +136,10 @@ export const pageQuery = graphql`
         page_home_heart_anatomy {
           value {
             ... on kontent_item_page_home_heart_anatomy {
+              system {
+                codename
+                id
+              }
               elements {
                 page_home_heart_anatomy_name {
                   value

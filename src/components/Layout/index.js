@@ -4,7 +4,8 @@ import FooterDefault from '../../containers/Footer/variants/FooterDefault'
 import NavbarDefault from '../../containers/Navbar/variants/NavbarDefault'
 import { useStaticQuery, graphql } from 'gatsby'
 import { prepareDataLinks } from '../../utils/prepareDataLinks'
-import KontentSmartLink from '@kentico/kontent-smart-link'
+import KontentSmartLink from '@kentico/kontent-smart-link';
+
 
 const Layout = ({ children }) => {
   const data = useStaticQuery(graphql`

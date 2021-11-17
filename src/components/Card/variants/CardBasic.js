@@ -16,7 +16,8 @@ const CardBasic = ({ data }) => {
     cardId,
   } = data
   return (
-    <article className="cardBasic">
+    <article className="cardBasic" 
+          data-kontent-element-codename={cardCodename}>
       <h3
         className="cardBasic__title"
         data-kontent-item-id={cardId}

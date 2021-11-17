@@ -1,5 +1,6 @@
 import React from 'react'
 import { Link } from 'gatsby'
+import { ImageElement } from '@kentico/gatsby-kontent-components'
 
 const HeroLarge = ({ data }) => {
   if (!data) {
@@ -57,7 +58,8 @@ const HeroLarge = ({ data }) => {
           })}
         </div>
       </div>
-      <img
+      <ImageElement
+        image={component_image_asset.value[0]}
         className="heroLarge__image"
         src={
           component_image_asset.value[0].url ||

@@ -70,6 +70,9 @@ export const pageQuery = graphql`
                         component_image_asset {
                           value {
                             url
+                            description
+                            width
+                            height
                           }
                         }
                       }
@@ -157,6 +160,9 @@ export const pageQuery = graphql`
                         component_image_asset {
                           value {
                             url
+                            description
+                            width
+                            height
                           }
                         }
                       }

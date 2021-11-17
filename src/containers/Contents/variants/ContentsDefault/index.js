@@ -1,5 +1,6 @@
 import React from 'react'
 import { Link } from 'gatsby'
+import { ImageElement } from '@kentico/gatsby-kontent-components'
 
 const ContentsDefault = ({ data }) => {
   const {
@@ -37,7 +38,8 @@ const ContentsDefault = ({ data }) => {
             {component_anchor_name.value}
           </Link>
         </div>
-        <img
+        <ImageElement
+          image={component_image_asset.value[0]}
           className="order-1 order-md-2"
           src={
             component_image_asset.value[0].url ||

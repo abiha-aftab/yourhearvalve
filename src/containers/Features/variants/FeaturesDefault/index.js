@@ -17,7 +17,7 @@ const FeaturesDefault = ({ data }) => {
         <div className="grid-md-2 gap-1 gap-md-2"
         >
           {patientInformationCards.map((card, index) => {
-            return <CardBasic data={card} codename={codename} id={id} key={index} />
+            return <CardBasic data={card} key={index} />
           })}
         </div>
       </div>

@@ -16,7 +16,8 @@ const CardBasic = ({ data }) => {
     cardId,
   } = data
   return (
-    <article className="cardBasic" 
+    <article className="cardBasic"     
+        data-kontent-item-id={cardId}
           data-kontent-element-codename={cardCodename}
           data-kontent-add-button
           data-kontent-add-button-render-position="right"
@@ -24,18 +25,15 @@ const CardBasic = ({ data }) => {
        >
       <h3
         className="cardBasic__title"
-        data-kontent-item-id={cardId}
         data-kontent-element-codename={cardCodename}
       >
         {title}
       </h3>
       <div 
-        data-kontent-item-id={cardId}
         data-kontent-element-codename={cardCodename}
         className="cardBasic__icon">{icon}</div>
       <p
         className="cardBasic__description"
-        data-kontent-item-id={cardId}
         data-kontent-element-codename={cardCodename}
       >
         {description}

@@ -21,7 +21,7 @@ const CardBasic = ({ data }) => {
           data-kontent-element-codename={cardCodename}
           data-kontent-add-button
           data-kontent-add-button-render-position="right"
-          data-kontent-add-button-insert-position="after"
+          data-kontent-add-button-insert-position="end"
        >
       <h3
         className="cardBasic__title"

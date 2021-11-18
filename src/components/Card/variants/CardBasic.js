@@ -17,7 +17,11 @@ const CardBasic = ({ data }) => {
   } = data
   return (
     <article className="cardBasic" 
-          data-kontent-element-codename={cardCodename}>
+          data-kontent-element-codename={cardCodename}
+          data-kontent-add-button
+          data-kontent-add-button-render-position="left"
+          data-kontent-add-button-insert-position="after"
+       >
       <h3
         className="cardBasic__title"
         data-kontent-item-id={cardId}

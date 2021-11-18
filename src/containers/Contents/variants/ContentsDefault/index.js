@@ -41,6 +41,7 @@ const ContentsDefault = ({ data }) => {
         <ImageElement
           image={component_image_asset.value[0]}
           className="order-1 order-md-2"
+          data-kontent-element-codename={codename}
           src={
             component_image_asset.value[0].url ||
             '../../../../assets/images/yhv-patient-doctor.jpeg'

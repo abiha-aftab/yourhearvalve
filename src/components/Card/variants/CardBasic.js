@@ -19,7 +19,7 @@ const CardBasic = ({ data }) => {
     <article className="cardBasic" 
           data-kontent-element-codename={cardCodename}
           data-kontent-add-button
-          data-kontent-add-button-render-position="left"
+          data-kontent-add-button-render-position="right"
           data-kontent-add-button-insert-position="after"
        >
       <h3

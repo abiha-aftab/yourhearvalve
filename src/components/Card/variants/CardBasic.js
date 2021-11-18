@@ -18,6 +18,7 @@ const CardBasic = ({ data, codename, id }) => {
   return (
     <article className="cardBasic"     
         data-kontent-item-id={id}
+          data-kontent-element-codename={codename}
           data-kontent-add-button
           data-kontent-add-button-render-position="right"
           data-kontent-add-button-insert-position="end"

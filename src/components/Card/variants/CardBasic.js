@@ -25,7 +25,10 @@ const CardBasic = ({ data }) => {
       >
         {title}
       </h3>
-      <div className="cardBasic__icon">{icon}</div>
+      <div 
+        data-kontent-item-id={cardId}
+        data-kontent-element-codename={cardCodename}
+        className="cardBasic__icon">{icon}</div>
       <p
         className="cardBasic__description"
         data-kontent-item-id={cardId}

@@ -6,7 +6,7 @@ export const prepareDataPatientInformation = (data) => {
   data.forEach((card) => {
     const {
       name: { value: card_name },
-      svg: { value: svg },
+      //svg: {},
       description: { value: description },
       anchor: {
         value: [anchor],
@@ -17,12 +17,8 @@ export const prepareDataPatientInformation = (data) => {
       url: { value: url },
       aria_label: { value: aria_label },
     } = anchor.elements
-    const icon =
-      svg.value === 'heartbeat' ? (
-        <FaHeartbeat className="icon" color="#c8102e" size="100" />
-      ) : (
-        <FaUserMd className="icon" color="#c8102e" size="100" />
-      )
+    const icon = <FaHeartbeat className="icon" color="#c8102e" size="100" />
+
     cards.push({
       title: card_name,
       icon: icon,

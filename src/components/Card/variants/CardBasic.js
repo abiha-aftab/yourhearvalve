@@ -15,6 +15,8 @@ const CardBasic = ({ data, codename, id }) => {
     cta_aria_label,
     cardCodename,
     cardId,
+    anchorId,
+    anchorCodename,
   } = data
   return (
     <article
@@ -50,6 +52,8 @@ const CardBasic = ({ data, codename, id }) => {
         to={cta_link}
         className="btn btn-blue cardBasic__cta"
         aria-label={cta_aria_label}
+        data-kontent-item-id={anchorId}
+        data-kontent-element-codename={anchorCodename}
       >
         {cta_text}
       </Link>

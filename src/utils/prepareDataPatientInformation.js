@@ -1,12 +1,14 @@
-import { FaHeartbeat, FaUserMd } from 'react-icons/fa'
 import React from 'react'
+import { ImageElement } from '@kentico/gatsby-kontent-components'
 
 export const prepareDataPatientInformation = (data) => {
   let cards = []
   data.forEach((card) => {
     const {
       name: { value: card_name },
-      //svg: {},
+      image: {
+        value: [image],
+      },
       description: { value: description },
       anchor: {
         value: [anchor],
@@ -18,11 +20,22 @@ export const prepareDataPatientInformation = (data) => {
       url: { value: url },
       aria_label: { value: aria_label },
     } = anchor.elements
-    const icon = <FaHeartbeat className="icon" color="#c8102e" size="100" />
+    const {
+      alt: { value: image_alt },
+      asset: {
+        value: [image_asset],
+      },
+    } = image.elements
+
+    const icon = {
+      url: image_asset.url,
+      width: image_asset.width || 110,
+      height: image_asset.height || 92,
+    }
 
     cards.push({
       title: card_name,
-      icon: icon,
+      icon: <ImageElement image={icon} alt={image_alt} />,
       description: description,
       cta_text: name,
       cta_link: url,

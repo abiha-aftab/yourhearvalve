@@ -11,7 +11,6 @@ const FeaturesDefault = ({ data }) => {
     cards: { value: cards },
     body,
   } = data.elements
-
   const { id, codename } = data.system
   const cardsData = prepareDataPatientInformation(cards)
   return (
@@ -28,9 +27,7 @@ const FeaturesDefault = ({ data }) => {
           data-kontent-element-codename={codename}
         >
           {cardsData.map((card, index) => {
-            return (
-              <CardBasic data={card} key={index} id={id} codename={codename} />
-            )
+            return <CardBasic data={card} id={id} key={index} />
           })}
         </div>
       </div>

@@ -9,7 +9,6 @@ const HeroLarge = ({ data }) => {
   if (!data) {
     return null
   }
-  console.log('data', data)
   const {
     body,
     anchors: { value: anchors },
@@ -44,12 +43,12 @@ const HeroLarge = ({ data }) => {
               <Link
                 to={url}
                 aria-label={aria_label || name}
+                className="heroLarge__btn btn btn-blue"
                 data-kontent-item-id={id}
                 data-kontent-element-codename="anchors"
                 data-kontent-add-button
                 data-kontent-add-button-render-position="right"
                 data-kontent-add-button-insert-position="after"
-                className="heroLarge__btn btn btn-blue"
               >
                 {name}
               </Link>

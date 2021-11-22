@@ -25,63 +25,16 @@ const Layout = ({ children }) => {
           }
           linked_items {
             value {
-              ... on kontent_item_navigation_general {
-                system {
-                  id
-                  codename
-                }
-                elements {
-                  name {
-                    value
-                  }
-                  url {
-                    value
-                  }
-                  linked_items {
-                    value {
-                      ...navLink
-                    }
-                  }
-                }
-              }
+              ...navigations
             }
           }
         }
       }
       footer: kontentItemNavigationFooter {
-        system {
-          id
-          codename
-        }
         elements {
           linked_items {
             value {
-              system {
-                id
-                codename
-              }
-              ... on kontent_item_navigation_general {
-                system {
-                  id
-                  codename
-                }
-                elements {
-                  name {
-                    value
-                  }
-                  url {
-                    value
-                  }
-                  url_slug {
-                    value
-                  }
-                  linked_items {
-                    value {
-                      ...navLink
-                    }
-                  }
-                }
-              }
+              ...navigations
             }
           }
         }
@@ -100,6 +53,10 @@ const Layout = ({ children }) => {
     }
   })
 
+  const navLogo = data.header.elements.image
+  const {
+    url: { value: brandURL },
+  } = data.header.elements
   const navLinks = prepareDataLinks(data.header.elements.linked_items.value)
   const footerLinks = prepareDataLinks(data.footer.elements.linked_items.value)
   return (
@@ -108,7 +65,11 @@ const Layout = ({ children }) => {
       data-kontent-project-id={process.env.GATSBY_PROJECT_ID}
       data-kontent-language-codename={process.env.GATSBY_LANGUAGE_CODENAMES}
     >
-      <NavbarDefault navLinks={navLinks} />
+      <NavbarDefault
+        brandURL={brandURL}
+        navLogo={navLogo}
+        navLinks={navLinks}
+      />
       {children}
       <FooterDefault footerLinks={footerLinks} />
     </div>
@@ -132,6 +93,29 @@ export const query = graphql`
       }
       url_slug {
         value
+      }
+    }
+  }
+
+  fragment navigations on kontent_item_navigation_general {
+    system {
+      id
+      codename
+    }
+    elements {
+      name {
+        value
+      }
+      url {
+        value
+      }
+      url_slug {
+        value
+      }
+      linked_items {
+        value {
+          ...navLink
+        }
       }
     }
   }
@@ -186,8 +170,10 @@ export const query = graphql`
       description {
         value
       }
-      svg {
-        value
+      image {
+        value {
+          ...image
+        }
       }
       anchor {
         value {

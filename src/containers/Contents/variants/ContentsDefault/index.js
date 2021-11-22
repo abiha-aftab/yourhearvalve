@@ -24,7 +24,14 @@ const ContentsDefault = ({ data }) => {
     },
   } = image.elements
   return (
-    <section className="section bg-slate-2" data-kontent-item-id={id}>
+    <section
+      className="section bg-slate-2"
+      data-kontent-item-id={id}
+      data-kontent-element-codename="heart_anatomy"
+      data-kontent-add-button
+      data-kontent-add-button-render-position="bottom"
+      data-kontent-add-button-insert-position="after"
+    >
       <div className="container grid-1 grid-md-2">
         <div
           className="order-2 order-md-1"

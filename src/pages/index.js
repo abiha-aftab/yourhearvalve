@@ -20,11 +20,17 @@ export default function Home({ data }) {
     },
   } = containers
   return (
-    <>
+    <div
+      data-kontent-item-id={data.system.id}
+      data-kontent-element-codename="heart_anatomy"
+      data-kontent-add-button
+      data-kontent-add-button-render-position="bottom"
+      data-kontent-add-button-insert-position="after"
+    >
       <HeroLarge data={pageBanner} />
       <FeaturesDefault data={patientInformation} />
       <ContentsDefault data={heartAnatomy} />
-    </>
+    </div>
   )
 }
 

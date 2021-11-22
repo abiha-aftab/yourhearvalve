@@ -30,11 +30,11 @@ const ContentsDefault = ({ data }) => {
   return (
     <section className="section bg-slate-2" data-kontent-item-id={id}>
       <div className="container grid-1 grid-md-2">
-        <div className="order-2 order-md-1">
-          <RichTextElement
-            data-kontent-element-codename={codename}
-            value={body.value}
-          />
+        <div
+          className="order-2 order-md-1"
+          data-kontent-element-codename={codename}
+        >
+          <RichTextElement value={body.value} />
           {anchors.map((anchor) => {
             const {
               name: { value: name },

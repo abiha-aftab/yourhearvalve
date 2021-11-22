@@ -9,6 +9,7 @@ const HeroLarge = ({ data }) => {
   if (!data) {
     return null
   }
+  console.log('data', data)
   const {
     body,
     anchors: { value: anchors },
@@ -27,11 +28,11 @@ const HeroLarge = ({ data }) => {
   return (
     <section className="heroLarge" data-kontent-item-id={id}>
       <div className="heroLarge__container">
-        <div
-          className="heroLarge__content"
-          data-kontent-element-codename={codename}
-        >
-          <RichTextElement value={body.value} />
+        <div className="heroLarge__content">
+          <RichTextElement
+            data-kontent-element-codename={codename}
+            value={body.value}
+          />
           {anchors.map((anchor) => {
             const {
               name: { value: name },
@@ -42,6 +43,7 @@ const HeroLarge = ({ data }) => {
               <Link
                 to={url}
                 aria-label={aria_label || name}
+                data-kontent-element-codename={codename}
                 className="heroLarge__btn btn btn-blue"
               >
                 {name}

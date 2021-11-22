@@ -48,7 +48,7 @@ const ContentsDefault = ({ data }) => {
         </div>
         {image && (
           <ImageElement
-            image={image.elements.assets.value[0]}
+            image={image}
             className="order-1 order-md-2"
             alt={image.elements.alt.value || 'Patient with doctor'}
           />

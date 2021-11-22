@@ -24,6 +24,8 @@ const ContentsDefault = ({ data }) => {
       },
     } = image.elements
   }
+
+  console.log('image', data.elements)
   return (
     <section className="section bg-slate-2">
       <div className="container grid-1 grid-md-2">
@@ -48,7 +50,7 @@ const ContentsDefault = ({ data }) => {
         </div>
         {image && (
           <ImageElement
-            image={image.elements.assets.value[0]}
+            image={image}
             className="order-1 order-md-2"
             alt={image.elements.alt.value || 'Patient with doctor'}
           />

@@ -2,6 +2,7 @@ import React from 'react'
 import { FaCaretDown, FaCaretUp } from 'react-icons/fa'
 import { motion, AnimatePresence } from 'framer-motion'
 import { dropdownVariant } from '../../../../assets/animations/animations'
+import { Link } from 'gatsby'
 
 const Dropdown = ({
   activeDropdown,
@@ -47,10 +48,12 @@ const Dropdown = ({
             {links.map((link, index) => {
               const { name, url } = link
               return (
-                <li className="navbarDefault__dropdown-item" key={index}>
-                  <a href={url} className="navbarDefault__dropdown-link">
-                    {name}
-                  </a>
+                <li role="button" onClick={(e) => toggleDropdown(e, id)} className="navbarDefault__dropdown-item" key={index}>
+                  {
+                    url.indexOf('https') !== -1
+                      ? <a href={url} target="_blank" rel="noreferrer" className="navbarDefault__dropdown-link">{name}</a>
+                      : <Link to={url} className="navbarDefault__dropdown-link">{name}</Link>
+                  }
                 </li>
               )
             })}

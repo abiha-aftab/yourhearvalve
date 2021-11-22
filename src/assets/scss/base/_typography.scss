@@ -64,7 +64,7 @@ p {
   margin-bottom: 0;
 }
 
-.lead {
+.lead, .lead p {
   font-size: $font-size-lead;
   line-height: line-height($font-size-lead);
   margin-bottom: $spacer * 2;

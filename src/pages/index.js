@@ -5,185 +5,101 @@ import ContentsDefault from '../containers/Contents/variants/ContentsDefault'
 import { graphql } from 'gatsby'
 
 export default function Home({ data }) {
-  const dataPageBanner =
-    data.kontentItemPageHome.elements.page_home_page_banner.value[0]
-  const dataPatientInformation =
-    data.kontentItemPageHome.elements.page_home_patient_information.value[0]
-  const dataHeartAnatomy =
-    data.kontentItemPageHome.elements.page_home_heart_anatomy.value[0]
-
+  const {
+    home: { elements: containers },
+  } = data
+  const {
+    page_banner: {
+      value: [pageBanner],
+    },
+    patient_information: {
+      value: [patientInformation],
+    },
+    heart_anatomy: {
+      value: [heartAnatomy],
+    },
+  } = containers
   return (
     <>
-      <HeroLarge data={dataPageBanner} />
-      <FeaturesDefault data={dataPatientInformation} />
-      <ContentsDefault data={dataHeartAnatomy} />
+      <HeroLarge data={pageBanner} />
+      <FeaturesDefault data={patientInformation} />
+      <ContentsDefault data={heartAnatomy} />
     </>
   )
 }
 
 export const pageQuery = graphql`
   query IndexQuery {
-    kontentItemPageHome {
+    home: kontentItemPageHome {
+      system {
+        id
+        codename
+      }
       elements {
-        page_home_page_banner {
+        page_banner {
           value {
-            ... on kontent_item_page_home_page_banner {
+            ... on kontent_item_container {
               system {
-                codename
                 id
+                codename
               }
               elements {
-                page_home_page_banner_name {
+                body {
                   value
                 }
-                page_home_page_banner_description {
-                  value
-                }
-                page_home_page_banner_anchors {
+                anchors {
                   value {
-                    ... on kontent_item_component_anchor {
-                      system {
-                        codename
-                        id
-                      }
-                      elements {
-                        component_anchor_name {
-                          value
-                        }
-                        component_anchor_url {
-                          value
-                        }
-                        component_anchor_aria_label {
-                          value
-                        }
-                      }
-                    }
+                    ...link
                   }
                 }
-                page_home_page_banner_assets {
+                images {
                   value {
-                    ... on kontent_item_component_image {
-                      elements {
-                        component_image_alt {
-                          value
-                        }
-                        component_image_asset {
-                          value {
-                            url
-                            description
-                            width
-                            height
-                          }
-                        }
-                      }
-                    }
+                    ...image
                   }
                 }
               }
             }
           }
         }
-        page_home_patient_information {
+        patient_information {
           value {
-            ... on kontent_item_page_home_patient_information {
+            ... on kontent_item_container {
               system {
-                codename
                 id
+                codename
               }
               elements {
-                page_home_patient_information_description {
+                body {
                   value
                 }
-                page_home_patient_information_cards {
+                cards {
                   value {
-                    ... on kontent_item_component_card {
-                      system {
-                        codename
-                        id
-                      }
-                      elements {
-                        component_card_name {
-                          value
-                        }
-                        component_card_description {
-                          value
-                        }
-                        component_card_svg {
-                          value
-                        }
-                        home_page_patient_information_anchor {
-                          value {
-                            ... on kontent_item_component_anchor {
-                              elements {
-                                component_anchor_name {
-                                  value
-                                }
-                                component_anchor_url {
-                                  value
-                                }
-                                component_anchor_aria_label {
-                                  value
-                                }
-                              }
-                            }
-                          }
-                        }
-                      }
-                    }
+                    ...card
                   }
                 }
               }
             }
           }
         }
-        page_home_heart_anatomy {
+        heart_anatomy {
           value {
-            ... on kontent_item_page_home_heart_anatomy {
+            ... on kontent_item_container {
               system {
-                codename
                 id
+                codename
               }
               elements {
-                page_home_heart_anatomy_name {
+                body {
                   value
                 }
-                page_home_heart_anatomy_description {
-                  value
-                }
-                page_home_heart_anatomy_images {
+                anchors {
                   value {
-                    ... on kontent_item_component_image {
-                      elements {
-                        component_image_alt {
-                          value
-                        }
-                        component_image_asset {
-                          value {
-                            url
-                            description
-                            width
-                            height
-                          }
-                        }
-                      }
-                    }
+                    ...link
                   }
                 }
-                page_home_heart_anatomy_anchor {
+                images {
                   value {
-                    ... on kontent_item_component_anchor {
-                      elements {
-                        component_anchor_name {
-                          value
-                        }
-                        component_anchor_url {
-                          value
-                        }
-                        component_anchor_aria_label {
-                          value
-                        }
-                      }
-                    }
+                    ...image
                   }
                 }
               }

@@ -3,37 +3,34 @@ import React from 'react'
 
 export const prepareDataPatientInformation = (data) => {
   let cards = []
-  data.page_home_patient_information_cards.value.forEach((card) => {
+  data.forEach((card) => {
     const {
-      component_card_name,
-      component_card_svg,
-      component_card_description,
-      home_page_patient_information_anchor,
+      name: { value: card_name },
+      svg: { value: svg },
+      description: { value: description },
+      anchor: {
+        value: [anchor],
+      },
     } = card.elements
-    const { codename, id } = card.system
     const {
-      component_anchor_name,
-      component_anchor_url,
-      component_anchor_aria_label,
-    } = home_page_patient_information_anchor.value[0].elements
+      name: { value: name },
+      url: { value: url },
+      aria_label: { value: aria_label },
+    } = anchor.elements
     const icon =
-      component_card_svg.value === 'heartbeat' ? (
+      svg.value === 'heartbeat' ? (
         <FaHeartbeat className="icon" color="#c8102e" size="100" />
       ) : (
         <FaUserMd className="icon" color="#c8102e" size="100" />
       )
     cards.push({
-      title: component_card_name.value,
+      title: card_name,
       icon: icon,
-      description: component_card_description.value,
-      cta_text: component_anchor_name.value,
-      cta_link: component_anchor_url.value,
-      cta_aria_label:
-        component_anchor_aria_label.value ||
-        `Learn more about ${component_card_name.value}`,
+      description: description,
+      cta_text: name,
+      cta_link: url,
+      cta_aria_label: aria_label || `Learn more about ${card_name}`,
       variant: 'Basic',
-      cardCodename: codename,
-      cardId: id,
     })
   })
   return cards

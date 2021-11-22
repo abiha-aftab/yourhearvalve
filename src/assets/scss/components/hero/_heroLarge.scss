@@ -14,7 +14,7 @@
       grid-template-columns: repeat(2, 1fr);
     }
   }
-  &__title {
+  h1 {
     @include md {
       max-width: 30rem;
     }

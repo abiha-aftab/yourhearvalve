@@ -1,21 +1,25 @@
 import React from 'react'
 import CardBasic from '../../../../components/Card/variants/CardBasic'
 import { prepareDataPatientInformation } from '../../../../utils/prepareDataPatientInformation'
+import { RichTextElement } from '@kentico/gatsby-kontent-components'
 
 const FeaturesDefault = ({ data }) => {
-  const patientInformationCards = prepareDataPatientInformation(data.elements)
-  const { codename, id } = data.system
+  if (!data) {
+    return null
+  }
+  const {
+    cards: { value: cards },
+    body,
+  } = data.elements
+  const cardsData = prepareDataPatientInformation(cards)
   return (
-    <section className="section" data-kontent-item-id={id}>
+    <section className="section">
       <div className="container-sm">
-        <p
-          className="text-center lead"
-          data-kontent-element-codename={codename}
-        >
-          {data.elements.page_home_patient_information_description.value}
-        </p>
+        <div className="text-center lead">
+          <RichTextElement value={body.value} />
+        </div>
         <div className="grid-md-2 gap-1 gap-md-2">
-          {patientInformationCards.map((card, index) => {
+          {cardsData.map((card, index) => {
             return <CardBasic data={card} key={index} />
           })}
         </div>

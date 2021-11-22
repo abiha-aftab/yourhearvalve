@@ -4,17 +4,32 @@ import FooterDefault from '../../containers/Footer/variants/FooterDefault'
 import NavbarDefault from '../../containers/Navbar/variants/NavbarDefault'
 import { useStaticQuery, graphql } from 'gatsby'
 import { prepareDataLinks } from '../../utils/prepareDataLinks'
-import KontentSmartLink from '@kentico/kontent-smart-link';
-
+import KontentSmartLink from '@kentico/kontent-smart-link'
 
 const Layout = ({ children }) => {
   const data = useStaticQuery(graphql`
     query NavigationQuery {
-      kontentItemNavigationHeader {
+      header: kontentItemNavigationHeader {
+        system {
+          id
+          codename
+        }
         elements {
-          navigation_header_linked_items {
+          url {
+            value
+          }
+          image {
+            value {
+              ...image
+            }
+          }
+          linked_items {
             value {
               ... on kontent_item_navigation_general {
+                system {
+                  id
+                  codename
+                }
                 elements {
                   name {
                     value
@@ -22,18 +37,9 @@ const Layout = ({ children }) => {
                   url {
                     value
                   }
-                  navigation_general_linked_items {
+                  linked_items {
                     value {
-                      ... on kontent_item_navigation_general {
-                        elements {
-                          name {
-                            value
-                          }
-                          url {
-                            value
-                          }
-                        }
-                      }
+                      ...navLink
                     }
                   }
                 }
@@ -42,11 +48,23 @@ const Layout = ({ children }) => {
           }
         }
       }
-      kontentItemNavigationFooter {
+      footer: kontentItemNavigationFooter {
+        system {
+          id
+          codename
+        }
         elements {
-          navigation_footer_linked_items {
+          linked_items {
             value {
+              system {
+                id
+                codename
+              }
               ... on kontent_item_navigation_general {
+                system {
+                  id
+                  codename
+                }
                 elements {
                   name {
                     value
@@ -54,18 +72,12 @@ const Layout = ({ children }) => {
                   url {
                     value
                   }
-                  navigation_general_linked_items {
+                  url_slug {
+                    value
+                  }
+                  linked_items {
                     value {
-                      ... on kontent_item_navigation_general {
-                        elements {
-                          name {
-                            value
-                          }
-                          url {
-                            value
-                          }
-                        }
-                      }
+                      ...navLink
                     }
                   }
                 }
@@ -88,14 +100,8 @@ const Layout = ({ children }) => {
     }
   })
 
-  const navLinks = prepareDataLinks(
-    data.kontentItemNavigationHeader.elements.navigation_header_linked_items
-      .value
-  )
-  const footerLinks = prepareDataLinks(
-    data.kontentItemNavigationFooter.elements.navigation_footer_linked_items
-      .value
-  )
+  const navLinks = prepareDataLinks(data.header.elements.linked_items.value)
+  const footerLinks = prepareDataLinks(data.footer.elements.linked_items.value)
   return (
     <div
       className="layout"
@@ -110,3 +116,84 @@ const Layout = ({ children }) => {
 }
 
 export default Layout
+
+export const query = graphql`
+  fragment navLink on kontent_item_navigation_general {
+    system {
+      id
+      codename
+    }
+    elements {
+      name {
+        value
+      }
+      url {
+        value
+      }
+      url_slug {
+        value
+      }
+    }
+  }
+
+  fragment image on kontent_item_component_image {
+    system {
+      id
+      codename
+    }
+    elements {
+      asset {
+        value {
+          url
+          description
+          width
+          height
+        }
+      }
+      alt {
+        value
+      }
+    }
+  }
+
+  fragment link on kontent_item_component_anchor {
+    system {
+      id
+      codename
+    }
+    elements {
+      name {
+        value
+      }
+      url {
+        value
+      }
+      aria_label {
+        value
+      }
+    }
+  }
+
+  fragment card on kontent_item_component_card {
+    system {
+      id
+      codename
+    }
+    elements {
+      name {
+        value
+      }
+      description {
+        value
+      }
+      svg {
+        value
+      }
+      anchor {
+        value {
+          ...link
+        }
+      }
+    }
+  }
+`

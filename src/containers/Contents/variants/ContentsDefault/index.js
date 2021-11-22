@@ -52,6 +52,8 @@ const ContentsDefault = ({ data }) => {
           })}
         </div>
         <ImageElement
+          data-kontent-item-id={image.system.id}
+          data-kontent-element-codename={image.system.codename}
           image={image_asset}
           className="order-1 order-md-2"
           alt={image_alt || 'Patient with doctor'}

@@ -45,7 +45,10 @@ const HeroLarge = ({ data }) => {
                 to={url}
                 aria-label={aria_label || name}
                 data-kontent-item-id={id}
-                data-kontent-element-codename={codename}
+                data-kontent-element-codename="anchors"
+                data-kontent-add-button
+                data-kontent-add-button-render-position="right"
+                data-kontent-add-button-insert-position="after"
                 className="heroLarge__btn btn btn-blue"
               >
                 {name}

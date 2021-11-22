@@ -8,6 +8,7 @@ export default function Home({ data }) {
   const {
     home: { elements: containers },
   } = data
+  console.log('test', data)
   const {
     page_banner: {
       value: [pageBanner],
@@ -23,7 +24,7 @@ export default function Home({ data }) {
     <>
       <HeroLarge data={pageBanner} />
       <FeaturesDefault data={patientInformation} />
-      <ContentsDefault data={heartAnatomy} />
+      <ContentsDefault data={heartAnatomy} contentId={data.home.system.id} />
     </>
   )
 }

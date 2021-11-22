@@ -5,7 +5,7 @@ import {
   RichTextElement,
 } from '@kentico/gatsby-kontent-components'
 
-const ContentsDefault = ({ data }) => {
+const ContentsDefault = ({ data, contentId }) => {
   if (!data) {
     return null
   }
@@ -26,7 +26,7 @@ const ContentsDefault = ({ data }) => {
   return (
     <section
       className="section bg-slate-2"
-      data-kontent-item-id={id}
+      data-kontent-item-id={contentId}
       data-kontent-element-codename="heart_anatomy"
       data-kontent-add-button
       data-kontent-add-button-render-position="bottom"

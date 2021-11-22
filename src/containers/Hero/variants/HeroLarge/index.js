@@ -28,21 +28,26 @@ const HeroLarge = ({ data }) => {
   return (
     <section className="heroLarge" data-kontent-item-id={id}>
       <div className="heroLarge__container">
-        <div className="heroLarge__content">
-          <RichTextElement
-            data-kontent-element-codename={codename}
-            value={body.value}
-          />
+        <div
+          className="heroLarge__content"
+          data-kontent-element-codename={codename}
+        >
+          <RichTextElement value={body.value} />
           {anchors.map((anchor) => {
             const {
               name: { value: name },
               url: { value: url },
               aria_label: { value: aria_label },
             } = anchor.elements
+            const {
+              codename: { value: codename },
+              id: { value: id },
+            } = anchor.system
             return (
               <Link
                 to={url}
                 aria-label={aria_label || name}
+                data-kontent-item-id={id}
                 data-kontent-element-codename={codename}
                 className="heroLarge__btn btn btn-blue"
               >

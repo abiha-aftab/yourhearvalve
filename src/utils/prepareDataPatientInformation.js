@@ -45,6 +45,8 @@ export const prepareDataPatientInformation = (data) => {
       cardCodename: codename,
       anchorId: anchor.system.id,
       anchorCodename: anchor.system.codename,
+      imageId: image.system.id,
+      imageCodename: image.system.codename,
     })
   })
   return cards

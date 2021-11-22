@@ -2,6 +2,7 @@ import React from 'react'
 import { Link } from 'gatsby'
 
 const CardBasic = ({ data, id }) => {
+  console.log(data)
   if (!data) {
     return null
   }
@@ -16,6 +17,8 @@ const CardBasic = ({ data, id }) => {
     cardId,
     anchorId,
     anchorCodename,
+    imageId,
+    imageCodename,
   } = data
   return (
     <article
@@ -33,7 +36,13 @@ const CardBasic = ({ data, id }) => {
       >
         {title}
       </h3>
-      <div className="cardBasic__icon">{icon}</div>
+      <div
+        className="cardBasic__icon"
+        data-kontent-item-id={imageId}
+        data-kontent-element-codename={imageCodename}
+      >
+        {icon}
+      </div>
       <p
         className="cardBasic__description"
         data-kontent-item-id={cardId}

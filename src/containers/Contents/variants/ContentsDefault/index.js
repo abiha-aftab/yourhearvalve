@@ -41,8 +41,11 @@ const ContentsDefault = ({ data }) => {
               url: { value: url },
               aria_label: { value: aria_label },
             } = anchor.elements
+            const { id, codename } = anchor.system
             return (
               <Link
+                data-kontent-item-id={id}
+                data-kontent-element-codename={codename}
                 to={url}
                 aria-label={aria_label || name}
                 className="btn btn-blue"

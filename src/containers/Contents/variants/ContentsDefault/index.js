@@ -16,6 +16,7 @@ const ContentsDefault = ({ data }) => {
       value: [image],
     },
   } = data.elements
+  const { codename, id } = data.system
   if (image) {
     const {
       alt: { value: image_alt },
@@ -27,10 +28,13 @@ const ContentsDefault = ({ data }) => {
 
   console.log('image', data.elements)
   return (
-    <section className="section bg-slate-2">
+    <section className="section bg-slate-2" data-kontent-item-id={id}>
       <div className="container grid-1 grid-md-2">
         <div className="order-2 order-md-1">
-          <RichTextElement value={body.value} />
+          <RichTextElement
+            data-kontent-element-codename={codename}
+            value={body.value}
+          />
           {anchors.map((anchor) => {
             const {
               name: { value: name },

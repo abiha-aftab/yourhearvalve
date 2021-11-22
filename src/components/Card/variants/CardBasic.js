@@ -5,6 +5,7 @@ const CardBasic = ({ data, codename, id }) => {
   if (!data) {
     return null
   }
+  console.log('my data', data)
   const {
     title,
     icon,

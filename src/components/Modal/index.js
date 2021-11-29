@@ -2,8 +2,7 @@ import React, { useEffect, useRef, useState } from 'react'
 import { motion, AnimatePresence } from 'framer-motion'
 import { modalVariants } from '../../assets/animations/animations'
 import { backdropVariants } from '../../assets/animations/animations'
-
-
+import { RichTextElement } from '@kentico/gatsby-kontent-components'
 
 const useDisableBodyScroll = (open) => {
   useEffect(() => {
@@ -32,6 +31,8 @@ let useClickOutside = (handler) => {
 }
 
 const Modal = ({ modalData, trigger }) => {
+  const { elements } = modalData[0]
+  const { body } = elements
   const [showModal, setShowModal] = useState(false);
   //disable the scroll when modal is open
   useDisableBodyScroll(showModal)
@@ -72,7 +73,7 @@ const Modal = ({ modalData, trigger }) => {
             <motion.div className="modal" variants={modalVariants} aria-modal="true" role="dialog">
               <div className="modal__content" ref={domNode}>
                 <div className="modal__header">
-                  <h3 className="modal__title">{modalData.title}</h3>
+                  <h3 className="modal__title">{elements.title.value}</h3>
                   <button
                     className="modal__close"
                     data-dismiss="modal"
@@ -84,8 +85,7 @@ const Modal = ({ modalData, trigger }) => {
                 </div>
 
                 <div className="modal__body">
-                  <p>{modalData.description}</p>
-                  <p>{modalData.information}</p>
+                  <RichTextElement value={body.value} />
                 </div>
                 <div className="modal__footer">
                   <button

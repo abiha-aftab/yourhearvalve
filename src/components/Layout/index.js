@@ -9,32 +9,38 @@ import KontentSmartLink from '@kentico/kontent-smart-link'
 const Layout = ({ children }) => {
   const data = useStaticQuery(graphql`
     query NavigationQuery {
-      header: kontentItemNavigationHeader {
+      header: kontentItemHeader {
         system {
           id
           codename
         }
         elements {
-          url {
-            value
-          }
-          image {
+          logo {
             value {
               ...image
             }
           }
-          linked_items {
+          menu {
             value {
-              ...navigations
+              ...nav_home
+              ...nav_menu
+              ...nav_page
             }
           }
         }
       }
-      footer: kontentItemNavigationFooter {
+      footer: kontentItemFooter {
+        system {
+          id
+          codename
+        }
         elements {
-          linked_items {
+          text {
+            value
+          }
+          menu {
             value {
-              ...navigations
+              ...nav_menu
             }
           }
         }
@@ -53,12 +59,11 @@ const Layout = ({ children }) => {
     }
   })
 
-  const navLogo = data.header.elements.image
-  const {
-    url: { value: brandURL },
-  } = data.header.elements
-  const navLinks = prepareDataLinks(data.header.elements.linked_items.value)
-  const footerLinks = prepareDataLinks(data.footer.elements.linked_items.value)
+  const navLogo = data.header.elements.logo
+  const navLinks = prepareDataLinks(data.header.elements.menu.value)
+  const footerLinks = prepareDataLinks(data.footer.elements.menu.value)
+  const footerText = data.footer.elements.text.value
+
   return (
     <div
       className="layout"
@@ -66,120 +71,13 @@ const Layout = ({ children }) => {
       data-kontent-language-codename={process.env.GATSBY_LANGUAGE_CODENAMES}
     >
       <NavbarDefault
-        brandURL={brandURL}
         navLogo={navLogo}
         navLinks={navLinks}
       />
       {children}
-      <FooterDefault footerLinks={footerLinks} />
+      <FooterDefault footerLinks={footerLinks} footerText={footerText} />
     </div>
   )
 }
 
 export default Layout
-
-export const query = graphql`
-  fragment navLink on kontent_item_navigation_general {
-    system {
-      id
-      codename
-    }
-    elements {
-      name {
-        value
-      }
-      url {
-        value
-      }
-      url_slug {
-        value
-      }
-    }
-  }
-
-  fragment navigations on kontent_item_navigation_general {
-    system {
-      id
-      codename
-    }
-    elements {
-      name {
-        value
-      }
-      url {
-        value
-      }
-      url_slug {
-        value
-      }
-      linked_items {
-        value {
-          ...navLink
-        }
-      }
-    }
-  }
-
-  fragment image on kontent_item_component_image {
-    system {
-      id
-      codename
-    }
-    elements {
-      asset {
-        value {
-          url
-          description
-          width
-          height
-        }
-      }
-      alt {
-        value
-      }
-    }
-  }
-
-  fragment link on kontent_item_component_anchor {
-    system {
-      id
-      codename
-    }
-    elements {
-      name {
-        value
-      }
-      url {
-        value
-      }
-      aria_label {
-        value
-      }
-    }
-  }
-
-  fragment card on kontent_item_component_card {
-    system {
-      id
-      codename
-    }
-    elements {
-      name {
-        value
-      }
-      description {
-        value
-      }
-      image {
-        value {
-          ...image
-        }
-      }
-      anchor {
-        value {
-          ...link
-        }
-      }
-    }
-  }
-`

@@ -2,29 +2,25 @@ import React from 'react'
 import { Link } from 'gatsby'
 import { FaAngleDoubleRight } from 'react-icons/fa'
 
-const PaginationDefault = ({ pagination = null }) => {
-  let links = [
-    {
-      text: 'Home',
-      url: '/',
-    },
-    {
-      text: 'Heart Basics',
-      url: '/',
-    },
-    {
-      text: 'Heart Anatomy',
-      url: '/',
-    },
-  ]
-  links = pagination ?? links
-  const length = links.length
+const PaginationDefault = ({ path }) => {
+  let links = []
+  let incrementalPath = ''
+  links.push({ text: 'Home', url: '/' })
+  path = path.split('/')
+  path.forEach((item) => {
+    incrementalPath = `${incrementalPath}/${item}`
+    links.push({
+      text: item.replace(/-/g, ' ').replace('faqs', 'FAQs'),
+      url: incrementalPath,
+    })
+  })
+
   return (
     <ul className="paginationDefault">
       {links.map((link, index) => {
         const { text, url } = link
         const counter = index + 1
-        if (counter !== length) {
+        if (counter !== links.length) {
           return (
             <li className="paginationDefault__item" key={index}>
               <Link to={url} className="paginationDefault__link">

@@ -1,44 +1,46 @@
 import React from 'react'
 import AccordionBasic from '../../../../components/Accordion/variants/AccordionBasic'
-import { accordionData } from '../../../../assets/data/accordion'
 import Modal from '../../../../components/Modal'
-import { modalData } from '../../../../assets/data/modal'
+import { RichTextElement } from '@kentico/gatsby-kontent-components'
+import FormBasic from '../../../../components/Form/variants/FormBasic'
 
-const ContentsPageTemplate = ({ item }) => {
-
+const ContentsPageTemplate = ({
+  path,
+  body,
+  accordions,
+  modal,
+  marketo_form,
+  itemId,
+  itemCodename,
+}) => {
+  console.log(marketo_form.length)
   return (
-    <>
-      <h3>{item.name}</h3>
-      {item.url.indexOf('/faqs/') !== -1 ? (
-        <>
-          <AccordionBasic data={accordionData} />
-          <Modal modalData={modalData} trigger="This information is not a substitute for talking with your doctor."/>
-        </>
-      ) : (
-        <>
-          <div>
-            <p>
-              Lorem ipsum dolor sit amet consectetur adipisicing elit. Impedit
-              nobis molestias reprehenderit nostrum reiciendis. Voluptate
-              excepturi reiciendis repellat eaque sit libero ad facere adipisci
-              molestiae? Sint non aspernatur eveniet quibusdam!
-            </p>
-            <p>
-              Excepturi, commodi. Tempora aliquid minima laboriosam libero magni
-              accusamus est incidunt id ab doloremque cupiditate inventore optio
-              soluta commodi, animi consequuntur qui unde possimus nobis
-              explicabo cum provident, aspernatur quibusdam.
-            </p>
-            {item.url.indexOf('/heart-basics/') !== -1 ||
-            item.url.indexOf('/treatment-options/') !== -1 ? (
-                  <Modal modalData={modalData} trigger="This information is not a substitute for talking with your doctor."/>
-            ) : (
-              ''
-            )}
-          </div>
-        </>
+    <div data-kontent-item-id={itemId}>
+      <div data-kontent-element-codename={itemCodename} className="contentPage">
+        <RichTextElement value={body.value} />
+      </div>
+      {accordions.length > 0 && (
+        <AccordionBasic
+          data={accordions}
+          data-kontent-element-codename={itemCodename}
+        />
       )}
-    </>
+      {modal.length > 0 &&
+        (path.indexOf('heart-basics/') !== -1 ||
+          path.indexOf('treatment-options/') !== -1) && (
+          <Modal
+            data-kontent-element-codename={itemCodename}
+            modalData={modal}
+            trigger={
+              modal[0].elements.toggle_text.value ||
+              'This information is not a substitute for talking with your doctor.'
+            }
+          />
+        )}
+      {marketo_form.length > 0 && (
+        <FormBasic data-kontent-element-codename={itemCodename} id="1277" />
+      )}
+    </div>
   )
 }
 

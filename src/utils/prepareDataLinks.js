@@ -1,11 +1,13 @@
 export const prepareDataLinks = (data) => {
   let navLinks = []
   data.forEach(link => {
-    const { name, url, linked_items } = link.elements
+    const { title: {value: title}, slug } = link.elements
+    let baseURL = slug.value ? slug.value : ""
+    let links = link.elements.links ? link.elements.links.value : []
     navLinks.push({
-      name: name.value,
-      url: url.value,
-      links: linked_items.value.length ? extractChillLinks(linked_items.value, url.value) : []
+      name: title,
+      url: baseURL === "/" ? baseURL : `/${baseURL}`,
+      links: links.length ? extractChillLinks(links, baseURL) : []
     })
   })
   return navLinks
@@ -13,10 +15,12 @@ export const prepareDataLinks = (data) => {
 const extractChillLinks = (data, baseURL) => {
   let childLinks = []
   data.forEach(link => {
-    const { name, url } = link.elements
+    const { title: {value: title} } = link.elements
+    let slug = link.elements.url ? link.elements.url.value : link.elements.slug.value
+    let url = slug ? slug.indexOf("https") !== -1 ? slug : baseURL === slug ? `/${slug}` : `/${baseURL}/${slug}` : ""
     childLinks.push({
-      name: name.value,
-      url: url.value.indexOf('https') !== -1 ? url.value : baseURL+url.value,
+      name: title,
+      url: url
     })
   })
   return childLinks

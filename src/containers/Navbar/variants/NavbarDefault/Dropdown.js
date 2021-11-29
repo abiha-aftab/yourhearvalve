@@ -48,11 +48,11 @@ const Dropdown = ({
             {links.map((link, index) => {
               const { name, url } = link
               return (
-                <li role="button" onClick={(e) => toggleDropdown(e, id)} className="navbarDefault__dropdown-item" key={index}>
+                <li className="navbarDefault__dropdown-item" key={index}>
                   {
                     url.indexOf('https') !== -1
                       ? <a href={url} target="_blank" rel="noreferrer" className="navbarDefault__dropdown-link">{name}</a>
-                      : <Link to={url} className="navbarDefault__dropdown-link">{name}</Link>
+                      : <button onClick={(e) => toggleDropdown(e, id)}><Link to={url} className="navbarDefault__dropdown-link">{name}</Link></button>
                   }
                 </li>
               )

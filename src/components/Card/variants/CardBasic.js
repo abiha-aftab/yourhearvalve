@@ -2,7 +2,6 @@ import React from 'react'
 import { Link } from 'gatsby'
 
 const CardBasic = ({ data, id }) => {
-  console.log(data)
   if (!data) {
     return null
   }

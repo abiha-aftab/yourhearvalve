@@ -1,21 +1,23 @@
-import { StaticImage } from 'gatsby-plugin-image'
 import React from 'react'
+import { ImageElement } from '@kentico/gatsby-kontent-components'
+import { StaticImage } from 'gatsby-plugin-image'
 
-const HeroSmall = ({ data }) => {
-  if (!data) {
-    return null
+const HeroSmall = ({ image }) => {
+  let hero = ''
+  if(image) {
+    const {
+      alt: { value: image_alt },
+      asset: {
+        value: [image_asset],
+      },
+    } = image.elements
+    hero = <ImageElement image={image_asset} className="heroSmall" alt={image_alt || 'hero image'} />
+  } else {
+    hero = <StaticImage className="heroSmall" src="../../../../assets/images/page-banner.jpeg" alt="hero image" />
   }
-
-  // const imgPath = getImage(image)
-
-  // return <GatsbyImage className="heroSmall" image={image} />
   return (
     <section>
-      <StaticImage
-        className="heroSmall"
-        src="../../../../assets/images/page-banner.jpeg"
-        alt="hero image"
-      />
+      {hero}
     </section>
   )
 }

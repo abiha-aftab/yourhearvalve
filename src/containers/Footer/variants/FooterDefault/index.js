@@ -1,7 +1,8 @@
 import React from 'react'
 import { Link } from 'gatsby'
+import { RichTextElement } from '@kentico/gatsby-kontent-components'
 
-const FooterDefault = ({ footerLinks = null}) => {
+const FooterDefault = ({ footerLinks = null, footerText = null }) => {
   return (
     <footer className="footerDefault section bg-slate">
       <div className="container">
@@ -35,11 +36,14 @@ const FooterDefault = ({ footerLinks = null}) => {
             )
           })}
         </div>
-        <hr />
-        <p className="small text-white">
-          © 2021 Edwards Lifesciences LLC. All rights reserved. Information
-          provided by Edwards Lifesciences
-        </p>
+        {footerText &&
+          <>
+            <hr/>
+            <div className="footerDefault__footer-text">
+              <RichTextElement value={footerText} />
+            </div>
+          </>
+        }
       </div>
     </footer>
   )

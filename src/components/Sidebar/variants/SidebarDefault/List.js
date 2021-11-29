@@ -15,7 +15,7 @@ const List = ({ sidebarLinks }) => {
       {sidebarLinks.map((link) => {
         return (
           <>
-            {link.url === '/' ? (
+            {link.url === '' ? (
               <li
                 className="sidebarDefault__item sidebarDefault__item--headline"
                 key={link.url}
@@ -24,13 +24,11 @@ const List = ({ sidebarLinks }) => {
               </li>
             ) : (
               <li className="sidebarDefault__item" key={link.url}>
-                <Link
-                  activeClassName="sidebarDefault__link--active"
-                  className="sidebarDefault__link"
-                  to={link.url}
-                >
-                  {link.name}
-                </Link>
+                {
+                  link.url.indexOf('https') !== -1
+                    ? <a href={link.url} target="_blank" rel="noreferrer" className="sidebarDefault__link">{link.name}</a>
+                    : <Link to={link.url} className="sidebarDefault__link" activeClassName="sidebarDefault__link--active">{link.name}</Link>
+                }
               </li>
             )}
           </>

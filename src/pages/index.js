@@ -6,7 +6,7 @@ import { graphql } from 'gatsby'
 
 export default function Home({ data }) {
   const {
-    home: { elements: containers },
+    home: { elements: sections },
   } = data
   const {
     page_banner: {
@@ -18,7 +18,7 @@ export default function Home({ data }) {
     heart_anatomy: {
       value: [heartAnatomy],
     },
-  } = containers
+  } = sections
   return (
     <>
       <HeroLarge data={pageBanner} />
@@ -30,80 +30,31 @@ export default function Home({ data }) {
 
 export const pageQuery = graphql`
   query IndexQuery {
-    home: kontentItemPageHome {
+    home: kontentItemHomeTemplate {
       system {
         id
         codename
       }
       elements {
+        title {
+          value
+        }
+        slug {
+          value
+        }
         page_banner {
           value {
-            ... on kontent_item_container {
-              system {
-                id
-                codename
-              }
-              elements {
-                body {
-                  value
-                }
-                anchors {
-                  value {
-                    ...link
-                  }
-                }
-                images {
-                  value {
-                    ...image
-                  }
-                }
-              }
-            }
+            ...section
           }
         }
         patient_information {
           value {
-            ... on kontent_item_container {
-              system {
-                id
-                codename
-              }
-              elements {
-                body {
-                  value
-                }
-                cards {
-                  value {
-                    ...card
-                  }
-                }
-              }
-            }
+            ...section
           }
         }
         heart_anatomy {
           value {
-            ... on kontent_item_container {
-              system {
-                id
-                codename
-              }
-              elements {
-                body {
-                  value
-                }
-                anchors {
-                  value {
-                    ...link
-                  }
-                }
-                images {
-                  value {
-                    ...image
-                  }
-                }
-              }
-            }
+            ...section
           }
         }
       }

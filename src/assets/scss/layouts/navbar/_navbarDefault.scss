@@ -108,6 +108,12 @@
       width: 200px;
     }
   }
+  &__dropdown-item {
+    button {
+      width: 100%;
+      text-align: left;
+    }
+  }
   &__dropdown-item:not(:last-child) .navbar__dropdown-link {
     @include md {
       border-bottom: 1px solid $color-white;

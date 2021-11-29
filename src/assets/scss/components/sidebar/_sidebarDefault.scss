@@ -38,6 +38,7 @@
     }
   }
   &__link {
+    padding-left: 1.5rem;
     @extend %sidebarItem;
     &:hover {
       text-decoration: underline;

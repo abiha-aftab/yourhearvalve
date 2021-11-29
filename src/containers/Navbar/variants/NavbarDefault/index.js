@@ -3,7 +3,7 @@ import { FiMenu } from 'react-icons/fi'
 import Nav from './Nav'
 import { Link } from 'gatsby'
 
-const NavbarDefault = ({ brandURL, navLogo, navLinks = null }) => {
+const NavbarDefault = ({ navLogo, navLinks = null }) => {
   const [activeDropdown, setActiveDropdown] = useState(null)
   const [mobile, setMobile] = useState(false)
   const toggleMobile = () => {
@@ -22,7 +22,7 @@ const NavbarDefault = ({ brandURL, navLogo, navLinks = null }) => {
     <nav className="navbarDefault" role="navigation">
       <div className="navbarDefault__container">
         <div className="navbarDefault__top">
-          <Link to={brandURL}>
+          <Link to="/">
             <img
               src={image_asset.url}
               className="navbarDefault__logo"

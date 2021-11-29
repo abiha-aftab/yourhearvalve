@@ -264,4 +264,33 @@ export const query = graphql`
       }
     }
   }
+  fragment dropdown on kontent_item_dropdown {
+    system {
+      id
+      codename
+    }
+    elements {
+      title {
+        value
+      }
+      items {
+        value {
+          ... on kontent_item_dropdown_item {
+            system {
+              id
+              codename
+            }
+            elements {
+              title {
+                value
+              }
+              url {
+                value
+              }
+            }
+          }
+        }
+      }
+    }
+  }
 `

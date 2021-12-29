@@ -23,7 +23,7 @@ const PaginationDefault = ({
     text: languageCode ? homeText[languageCode] : 'Home',
     url: languageCode ? `/${languageCode}` : '/',
   })
-  path = path.split('/')
+  path = path?.split('/')
   path.forEach((item) => {
     if (languageCode && item === languageCode) return
     incrementalPath = `${incrementalPath}/${item}`

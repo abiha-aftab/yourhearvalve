@@ -24,7 +24,7 @@ const PaginationDefault = ({
     url: languageCode ? `/${languageCode}` : '/',
   })
   path = path?.split('/')
-  path.forEach((item) => {
+  path?.forEach((item) => {
     if (languageCode && item === languageCode) return
     incrementalPath = `${incrementalPath}/${item}`
     if (regionalMapping) {

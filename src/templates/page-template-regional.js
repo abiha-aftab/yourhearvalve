@@ -6,10 +6,14 @@ import PaginationDefault from '../components/Pagination/variants/PaginationDefau
 import ContentsPageTemplate from '../containers/Contents/variants/ContentsPageTemplate'
 import { prepareSidebarLinks } from '../utils/prepareSidebarLinks'
 import Dropdown from '../components/Dropdown/variants/DropdownDefault'
+import LayoutRegional from '../components/Layout/variations/LayoutRegional'
 import SEO from '../components/SEO'
-import Layout from '../components/Layout/variations/LayoutDefault'
+import { prepareDataLinks } from '../utils/prepareDataLinks'
 
-export default function PageTemplate({ pageContext: { pageID, item }, data }) {
+export default function PageTemplateRegional({
+  pageContext: { languageCode, pageID, item },
+  data,
+}) {
   const path = item.url.replace(/^\/+|\/+$/g, '')
   const {
     body,
@@ -21,25 +25,59 @@ export default function PageTemplate({ pageContext: { pageID, item }, data }) {
     dropdown: { value: dropdown },
     title: { value: title },
   } = data.page.elements
+  if (title === 'Home') {
+    console.log(data.page)
+  }
   const { id, codename } = data.page.system
-  const sidebarLinks = prepareSidebarLinks(menu)
+  const sidebarLinks = prepareSidebarLinks(menu, languageCode)
+  let footerLinksTranslations = []
+  let titleMapping = []
+  if (data.footer) {
+    footerLinksTranslations = prepareDataLinks(
+      data.footer.elements.menu.value,
+      languageCode,
+      'footer'
+    )
+    titleMapping = footerLinksTranslations.filter(function (page) {
+      return page.url === `/${languageCode}/${item.categorySlug}`
+    })
+  }
 
   let categoryPath = path.split('/')
-  categoryPath[0] = `/${categoryPath[0]}`
+  categoryPath[1] = `/${categoryPath[0]}/${categoryPath[1]}`
   return (
-    <Layout>
+    <LayoutRegional
+      languageCode={languageCode}
+      header={data.header}
+      footer={data.footer}
+    >
       <SEO title={title} />
       <HeroSmall image={image.value ? image.value[0] : null} />
       <section className="section">
         <div className="container">
-          <h2
-            className="text-crimson category"
-            data-kontent-item-id={id}
-            data-kontent-element-codename={codename}
-          >
-            <a href={categoryPath[0]}>{item.category}</a>
-          </h2>
-          <PaginationDefault path={path} pageId={id} pageCodename={codename} />
+          {item.pageSlug !== '' && (
+            <h2
+              className="text-crimson category"
+              data-kontent-item-id={id}
+              data-kontent-element-codename={codename}
+            >
+              <a href={categoryPath[1]}>
+                {item.category.toLowerCase() === 'regional'
+                  ? item.name
+                  : titleMapping.length > 0
+                  ? titleMapping[0].name
+                  : item.category}
+              </a>
+            </h2>
+          )}
+          <PaginationDefault
+            path={path}
+            languageCode={languageCode}
+            pageId={id}
+            pageCodename={codename}
+            regionalMapping={sidebarLinks}
+            footerLinksTranslations={footerLinksTranslations}
+          />
           <div className="grid-1 grid-md-12 mt-2 gap-1 gap-md-2">
             {sidebarLinks && (
               <div className="col-md-3">
@@ -60,19 +98,45 @@ export default function PageTemplate({ pageContext: { pageID, item }, data }) {
                 <Dropdown
                   dropdown={dropdown[0]}
                   categorySlug={item.categorySlug}
+                  languageCode={languageCode}
                 />
               )}
             </div>
           </div>
         </div>
       </section>
-    </Layout>
+    </LayoutRegional>
   )
 }
 
 export const pageQuery = graphql`
-  query PageQuery($pageID: String) {
-    page: kontentItemPageTemplate(system: { id: { eq: $pageID } }) {
+  query RegionalPageQuery($languageCode: String, $pageID: String) {
+    header: kontentItemHeader(system: { language: { eq: $languageCode } }) {
+      system {
+        id
+        codename
+      }
+      elements {
+        logo {
+          value {
+            ...image
+          }
+        }
+        menu {
+          value {
+            ...nav_home
+            ...nav_menu
+            ...nav_page
+          }
+        }
+        language_selector {
+          value
+        }
+      }
+    }
+    page: kontentItemPageTemplate(
+      system: { id: { eq: $pageID }, language: { eq: $languageCode } }
+    ) {
       system {
         id
         codename
@@ -200,6 +264,22 @@ export const pageQuery = graphql`
         dropdown {
           value {
             ...dropdown
+          }
+        }
+      }
+    }
+    footer: kontentItemFooter(system: { language: { eq: $languageCode } }) {
+      system {
+        id
+        codename
+      }
+      elements {
+        text {
+          value
+        }
+        menu {
+          value {
+            ...nav_menu
           }
         }
       }

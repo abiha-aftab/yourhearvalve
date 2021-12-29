@@ -15,12 +15,19 @@ textarea {
     font-weight: bold;
 }
 
-.mktoOffset {
-    width: 0px !important;
-}
-
-.mktoRadioList {
-    max-width: 760px;
+form.mktoForm {
+    .mktoHasWidth:not(.mktoGutter, .mktoLabel) {
+        width: 320px !important;
+        @include md {
+            width: 650px !important;
+        }
+        &.mktoHtmlText {
+            width: 320px !important;
+            @include md {
+                width: 650px !important;
+            }
+        }
+    }
 }
 
 div.mktoHtmlText.mktoHasWidth {
@@ -49,7 +56,12 @@ form.mktoForm textarea.mktoField {
 form.mktoForm {
     font-size: inherit;
     line-height: inherit;
-    margin: 0 auto 50px
+    margin: 0 auto 50px;
+    max-width: 100%;
+    width: auto !important;
+    b {
+        font-weight: bold;
+    }
 }
 
 @media screen and (min-width: 1024px) {
@@ -148,7 +160,7 @@ form.mktoForm select {
     -webkit-appearance: none;
     -moz-appearance: none;
     appearance: none;
-    //background-image: url(images/select-arrows.png);
+    background-image: url('/select-arrows.png');
     background-repeat: no-repeat;
     background-position: 287px 3px
 }
@@ -221,4 +233,39 @@ form.mktoForm .mktoButtonWrap.mktoSimple button.mktoButton {
     text-transform: none !important;
     vertical-align: middle;
     white-space: nowrap
+}
+
+.mktoOffset {
+    width: 0px !important;
+}
+
+@media (max-width:768px){
+    form.mktoForm {
+        .mktoHasWidth:not(.mktoGutter, .mktoLabel) {
+            width: 520px !important;
+            &.mktoHtmlText {
+                width: 520px !important;
+            }
+        }
+    }
+}
+@media (max-width:420px){
+    form.mktoForm {
+        .mktoHasWidth:not(.mktoGutter, .mktoLabel) {
+            width: 310px !important;
+            &.mktoHtmlText {
+                width: 310px !important;
+            }
+        }
+    }
+}
+@media (max-width:320px){
+    form.mktoForm {
+        .mktoHasWidth:not(.mktoGutter, .mktoLabel) {
+            width: 260px !important;
+            &.mktoHtmlText {
+                width: 260px !important;
+            }
+        }
+    }
 }

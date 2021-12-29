@@ -15,7 +15,8 @@
   $size: 5rem;
   padding: math.div($size, 2) 0;
   @include md {
-    padding: $size 0;
+    // padding: $size 0;
+    padding: 2rem 0;
   }
 }
 

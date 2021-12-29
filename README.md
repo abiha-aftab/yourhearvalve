@@ -491,3 +491,5 @@ $utilities: (
 ```
 
 Will generate classes `ml-0` through `ml-5`
+
+*Sample text for dev PR*

@@ -13,6 +13,14 @@
     align-items: center;
     img {
       margin-bottom: 2rem;
+      max-width: 100%;
+    }
+  }
+  .column-grid {
+    figure {
+      img {
+        margin: 1rem 0;
+      }
     }
   }
   table {

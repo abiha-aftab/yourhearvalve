@@ -1,14 +1,14 @@
 import React, { useEffect } from 'react'
-import '../../assets/scss/main.scss'
-import FooterDefault from '../../containers/Footer/variants/FooterDefault'
-import NavbarDefault from '../../containers/Navbar/variants/NavbarDefault'
+import '../../../../assets/scss/main.scss'
+import FooterDefault from '../../../../containers/Footer/variants/FooterDefault'
+import NavbarDefault from '../../../../containers/Navbar/variants/NavbarDefault'
 import { useStaticQuery, graphql } from 'gatsby'
-import { prepareDataLinks } from '../../utils/prepareDataLinks'
+import { prepareDataLinks } from '../../../../utils/prepareDataLinks'
 import KontentSmartLink from '@kentico/kontent-smart-link'
 
 const Layout = ({ children }) => {
   const data = useStaticQuery(graphql`
-    query NavigationsQuery {
+    query NavigationQuery {
       header: kontentItemHeader {
         system {
           id
@@ -68,9 +68,7 @@ const Layout = ({ children }) => {
     <div
       className="layout"
       data-kontent-project-id={process.env.GATSBY_KONTENT_PROJECT_ID}
-      data-kontent-language-codename={
-        process.env.GATSBY_KONTENT_LANGUAGE_CODENAMES
-      }
+      data-kontent-language-codename={process.env.GATSBY_KONTENT_LANGUAGE_CODENAMES}
     >
       <NavbarDefault navLogo={navLogo} navLinks={navLinks} />
       {children}

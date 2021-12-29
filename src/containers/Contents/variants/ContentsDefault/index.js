@@ -1,4 +1,4 @@
-import React from 'react'
+import React, { useState, useEffect } from 'react'
 import { Link } from 'gatsby'
 import {
   ImageElement,
@@ -27,7 +27,7 @@ const ContentsDefault = ({ data }) => {
     <section className="section bg-slate-2" data-kontent-item-id={id}>
       <div className="container grid-1 grid-md-2">
         <div
-          className="order-2 order-md-1"
+          className="order-2 order-md-1 contentDefault"
           data-kontent-element-codename={codename}
         >
           <RichTextElement value={body.value} />
@@ -40,6 +40,7 @@ const ContentsDefault = ({ data }) => {
             const { id, codename } = anchor.system
             return (
               <Link
+                key={codename}
                 data-kontent-item-id={id}
                 data-kontent-element-codename={codename}
                 to={url}

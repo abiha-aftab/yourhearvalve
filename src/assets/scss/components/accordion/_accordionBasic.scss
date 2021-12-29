@@ -35,5 +35,17 @@
     padding:1rem;
     border:1px solid $color-grey-3;
     border-top: none;
+    p strong {
+      color: $color-crimson;
+    }
+    .column-1 {
+      margin-top: 37px;
+    }
+    .column-2 {
+      margin-top: 37px;
+    }
+    .column-3 {
+      margin-top: 37px;
+    }
   }
 }

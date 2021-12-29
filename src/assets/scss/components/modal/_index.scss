@@ -6,6 +6,10 @@
   margin: 1rem;
   justify-content: center;
   align-items: center;
+  ::selection {
+    background: #8ba9bd;
+    color: white;
+  }
   &__header {
     display: flex;
     padding: 1rem;
@@ -33,13 +37,13 @@
     background-color: $color-white;
     overflow-y: auto;
     @include md {
-      max-width: 42rem;
+      max-width: 800px;
     }
   }
   &__close {
     position: absolute;
     right: $spacer;
-    padding:$spacer;
+    padding: $spacer;
     font-size: $font-size-h3;
     font-weight: $font-weight-bold;
     border: 0;

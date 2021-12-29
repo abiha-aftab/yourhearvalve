@@ -262,6 +262,9 @@ export const query = graphql`
       error_message {
         value
       }
+      footnotes {
+        value
+      }
     }
   }
   fragment dropdown on kontent_item_dropdown {

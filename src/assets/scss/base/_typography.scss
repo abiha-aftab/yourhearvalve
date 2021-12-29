@@ -1,3 +1,9 @@
+* {
+  ::selection {
+    background: #8ba9bd;
+    color: white;
+  }
+}
 body {
   font-size: $font-size-base;
   line-height: line-height($font-size-base);
@@ -9,7 +15,7 @@ h1 {
   line-height: line-height($font-size-h1);
   margin-bottom: $spacer;
   font-weight: $font-weight-light;
-  color: $color-black;
+  color: $color-slate;
 }
 
 h2 {
@@ -18,7 +24,7 @@ h2 {
   font-weight: $font-weight-light;
   color: $color-crimson;
   margin-bottom: $spacer;
-  color: $color-black;
+  color: $color-slate;
   text-transform: capitalize;
 }
 
@@ -27,7 +33,7 @@ h3 {
   line-height: line-height($font-size-h3);
   font-weight: $font-weight-normal;
   margin-bottom: $spacer;
-  color: $color-black;
+  color: $color-slate;
 }
 
 h4 {
@@ -41,6 +47,17 @@ p {
   line-height: line-height($font-size-base);
   margin-bottom: $spacer;
   color: $color-slate;
+  font-weight: $font-weight-lightest;
+}
+
+b,
+strong {
+  font-weight: $font-weight-normal;
+}
+
+li,
+tr {
+  font-weight: $font-weight-lightest;
 }
 
 .list {
@@ -64,11 +81,26 @@ p {
   margin-bottom: 0;
 }
 
-.lead, .lead p {
+.category {
+  a {
+    text-decoration: none;
+    &:hover {
+      color: $color-blue;
+      text-decoration: underline;
+    }
+  }
+}
+.contentDefault h2 {
+  text-transform: none;
+}
+
+.lead,
+.lead p {
   font-size: $font-size-lead;
   line-height: line-height($font-size-lead);
   margin-bottom: $spacer * 2;
   color: $color-slate;
+  font-weight: $font-weight-lightest;
 }
 
 a {

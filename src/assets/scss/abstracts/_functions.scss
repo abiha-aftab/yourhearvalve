@@ -4,7 +4,7 @@
   @if ($value >= 1.5rem) {
     @return $value * 1.25;
   } @else {
-    @return $value * 1.5;
+    @return $value * 2;
   }
 }
 

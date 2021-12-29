@@ -1,10 +1,7 @@
 .paginationDefault {
-  display: flex;
-  align-items: center;
   list-style: none;
   &__item {
-    display: flex;
-    align-items: center;
+    display: inline;
     text-transform: capitalize;
     a {
       color: $color-crimson;
@@ -16,6 +13,7 @@
     svg {
       margin: 0 0.4rem;
       fill: $color-grey-2;
+      vertical-align: text-bottom;
     }
   }
   &__item:last-child {

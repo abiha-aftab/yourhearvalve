@@ -1,6 +1,6 @@
-.footerDefault {
+.footerRegional {
   hr {
-    margin: 2rem 0;
+    margin: 1rem 0;
   }
   &__title-link {
     display: inline-block;
@@ -12,19 +12,24 @@
   }
   &__title {
     color: $color-white;
-    margin-bottom: 1.5rem;
   }
   &__list {
     list-style: none;
     line-height: $line-height-list;
+    margin-bottom: 2rem;
   }
-  // &__list-item {
-  //   &:not(:last-child) {
-  //     margin-bottom: 0.7rem;
-  //   }
-  // }
+  &__list-item {
+    display: inline;
+    &:not(:last-child) {
+      margin-bottom: 1rem;
+      &:after {
+        content: "|";
+        margin: 0 1rem;
+      }
+    }
+  }
   &__list-link {
-    color: $color-grey-2;
+    color: $color-white;
     text-decoration: none;
     font-size: $font-size-small;
     &:hover {

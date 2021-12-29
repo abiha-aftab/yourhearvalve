@@ -14,7 +14,7 @@ const ContentsPageTemplate = ({
   itemCodename,
 }) => {
   const [trademarkInfo, settrademarkInfo] = useState([])
-  let pagePath = path.split('/')
+  let pagePath = path?.split('/')
 
   useEffect(() => {
     if (pagePath[2] && pagePath[2] === 'copyrights-trademarks') {

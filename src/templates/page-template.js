@@ -24,7 +24,7 @@ export default function PageTemplate({ pageContext: { pageID, item }, data }) {
   const { id, codename } = data.page.system
   const sidebarLinks = prepareSidebarLinks(menu)
 
-  let categoryPath = path.split('/')
+  let categoryPath = path?.split('/')
   categoryPath[0] = `/${categoryPath[0]}`
   return (
     <Layout>
